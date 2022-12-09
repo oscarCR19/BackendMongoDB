@@ -1,0 +1,200 @@
+﻿
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link href="~/css/site.css" rel="stylesheet" />
+
+    <link rel="stylesheet" href="~/lib/bootstrap/dist/css/bootstrap.min.css" />
+    
+    <title>Usuarios></title>
+</head>
+<body style="background:linear-gradient(#a2a2ec,#5656ec,#0d0dec)">
+    <h1>Lista de usuarios</h1>
+
+    
+    
+    <div class="row">
+        @if(ViewBag.UserList==null){
+            <p>No hay usuarios registrados</p>
+        }else{
+
+            @foreach (var @item in @ViewBag.UserList)
+            {
+                <div class="card" style="width: 18rem; margin-right:10px; margin-top:10px">
+                    <div class="card-body">
+                        <h5 class="card-title">Id</h5>
+                        <h6 class="card-subtitle mb-2 text-muted">@item._id</h6>
+
+                        <h5 class="card-title">Nombre</h5>
+                        <h6 class="card-subtitle mb-2 text-muted">@item.name</h6>
+
+                        <div class="row">
+                            <div class="col">
+
+                                <h5 class="card-title">Dirección</h5>
+                                <h6 class="card-subtitle mb-2 text-muted">@item.address</h6>
+
+                            </div>
+                            <div class="col">
+
+                                <h5 class="card-title">Telefóno</h5>
+                                <h6 class="card-subtitle mb-2 text-muted">@item.phone</h6>
+
+                            </div>
+                        </div>
+
+                        <h5 class="card-title">Correo</h5>
+                        <h6 class="card-subtitle mb-2 text-muted">@item.email</h6>
+
+                        <h5 class="card-title">Fecha Ingreso</h5>
+                        <h6 class="card-subtitle mb-2 text-muted">@item.dateIn</h6>
+                        <hr>
+
+                        <div class="row" style="text-align:right">
+                            <div class="col">
+                                <form asp-action="goUpdateUser" asp-controller="Home" method="POST">
+                                    <input id="txtIndex" name="txtIndex" value="@item._id" hidden />
+                                    <button class="btn btn-warning" type="submit">Modificar</button>
+                                </form>
+
+                            </div>
+
+                            <div class="col">
+                                <form asp-action="deleteUser" asp-controller="Home" method="POST">
+                                    <input id="txtIndex" name="txtIndex" value="@item._id" hidden  />
+                                    <button class="btn btn-danger" type="submit">Borrar</button>
+                                </form>
+
+                            </div>
+                        </div>
+
+                    </div>
+                </div>
+
+
+
+                <!-- Modal modificar usuario -->
+                <div class="modal fade" id="modalUpdate" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1" aria-labelledby="staticBackdropLabel" aria-hidden="true">
+                    <div class="modal-dialog">
+                        <div class="modal-content">
+                            <div class="modal-header">
+                                <h5 class="modal-title" id="staticBackdropLabel">Ingresar Usuario</h5>
+                                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                            </div>
+                            <div class="modal-body">
+                                <form asp-action="insertUser" asp-controller="Home" method="POST">
+                                    <h5 class="card-title">Nombre</h5>
+                                    <input id="txtNombre" name="txtNombre" value="@item.name" />
+
+                                    <div class="row">
+                                        <div class="col">
+
+                                            <h5 class="card-title">Dirección</h5>
+                                            <input id="txtDirec" name="txtDirec" value="" />
+
+                                        </div>
+                                        <div class="col">
+
+                                            <h5 class="card-title">Telefóno</h5>
+                                            <input id="txtTel" name="txtTel" value="" />
+
+                                        </div>
+                                    </div>
+
+                                    <h5 class="card-title">Correo</h5>
+                                    <input id="txtCorreo" name="txtCorreo" value="" />
+
+
+                                    <div class="modal-footer">
+                                        <button type="submit" class="btn btn-success">Insertar</button>
+                                        <button type="button" class="btn btn-warning" data-bs-dismiss="modal">Close</button>
+                                    </div>
+                                </form>
+                            </div>
+
+
+                        </div>
+                    </div>
+                </div>
+
+                
+
+            
+            
+            
+            
+            
+            
+            }
+
+        }
+
+       
+
+     </div>
+
+
+
+    <!-- Button trigger modal -->
+    <button type="button" class="btn btn-success" data-bs-toggle="modal" data-bs-target="#staticBackdrop" style="margin-top:20px;">
+        Agregar Usuario
+    </button>
+
+    <!-- Modal ingresar usuario -->
+    <div class="modal fade" id="staticBackdrop" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1" aria-labelledby="staticBackdropLabel" aria-hidden="true">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="staticBackdropLabel">Ingresar Usuario</h5>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+                <div class="modal-body">
+                    <form asp-action="insertUser" asp-controller="Home" method="POST">
+                    <h5 class="card-title">Nombre</h5>
+                    <input id="txtNombre" name="txtNombre" />
+
+                    <div class="row">
+                        <div class="col">
+
+                            <h5 class="card-title">Dirección</h5>
+                                <input id="txtDirec" name="txtDirec" />
+
+                        </div>
+                        <div class="col">
+
+                            <h5 class="card-title">Telefóno</h5>
+                                <input id="txtTel" name="txtTel" />
+
+                        </div>
+                    </div>
+
+                    <h5 class="card-title">Correo</h5>
+                        <input id="txtCorreo" name="txtCorreo" />
+                        
+                    
+                    <div class="modal-footer">
+                            <button type="submit" class="btn btn-success">Insertar</button>
+                            <button type="button" class="btn btn-warning" data-bs-dismiss="modal">Close</button>
+                     </div>
+                    </form>
+                </div>
+                
+                
+            </div>
+        </div>
+    </div>
+
+
+
+    
+    
+   
+
+
+
+</body>
+</html>

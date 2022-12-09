@@ -1,0 +1,71 @@
+﻿<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link href="~/css/site.css" rel="stylesheet" />
+
+    <link rel="stylesheet" href="~/lib/bootstrap/dist/css/bootstrap.min.css" />
+
+    <title>Usuarios></title>
+</head>
+<body style="background:linear-gradient(#a2a2ec,#5656ec,#0d0dec)">
+    <h1>Modificar Usuario</h1>
+
+
+    <div class="container">
+
+        <div class="card" style="width: 18rem; margin-right:10px; margin-top:10px">
+            <div class="card-body">
+                <form asp-action="updateUser" asp-controller="Home" method="POST">
+
+                <h5 class="card-title">Nombre</h5>
+                    <input id="txtNombre" name="txtNombre" value="@ViewBag.User.name" />
+                    <input id="txtId" name="txtId" value="@ViewBag.User._id" hidden />
+
+                <div class="row">
+                    <div class="col">
+
+                        <h5 class="card-title">Dirección</h5>
+                            <input id="txtDirec" name="txtDirec" value="@ViewBag.User.address" />
+
+                    </div>
+                    <div class="col">
+
+                        <h5 class="card-title">Telefóno</h5>
+                            <input id="txtTel" name="txtTel" value="@ViewBag.User.phone" />
+
+                    </div>
+                </div>
+
+                <h5 class="card-title">Correo</h5>
+                    <input id="txtCorreo" name="txtCorreo" value="@ViewBag.User.email" />
+                <hr>
+
+                <div class="row" style="text-align:right">
+                    <div class="col">
+                        <button class="btn btn-success" type="submit">Modificar</button>
+                     </div>
+
+                    <div class="col">
+                        <form asp-action="CancelView" asp-controller="Home" method="POST">
+                            <button class="btn btn-danger" type="submit">Cancelar</button>
+                        </form>
+
+                    </div>
+                </div>
+                </form>
+            </div>
+        </div>
+
+
+    </div>
+
+            
+
+
+                
+
+</body>
+</html>
